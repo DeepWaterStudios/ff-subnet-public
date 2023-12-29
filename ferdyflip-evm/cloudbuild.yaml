@@ -1,0 +1,15 @@
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/tactical-retreat/ferdynet-subnet-evm.git']
+
+  - name: 'golang:latest'
+    args: ['bash', '-c', './scripts/build.sh ferdynet_vm.bin']
+    dir: 'subnet-evm'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        TIMESTAMP=$(date +%s)
+        gsutil cp subnet-evm/ferdynet_vm.bin gs://ferdyflip-evm-artifacts/ferdynet_vm_$${TIMESTAMP}.bin

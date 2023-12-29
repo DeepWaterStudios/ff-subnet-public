@@ -1,0 +1,32 @@
+#!/bin/bash
+set -ex
+
+# Only run this one time, when the instance is first launched.
+if [[ -f /etc/startup_was_launched ]]; then exit 0; fi
+
+# Find the device name for the disk with the label 'db-disk'
+DB_DEVICE=$(ls -l /dev/disk/by-id | grep 'db-disk-' | awk -F'/' '{print $NF}' | sort -u)
+
+# Set up pd mount point
+mkdir /mnt/avax-db
+
+# Check if disk is already formatted
+FS_TYPE=$(file -s /dev/$DB_DEVICE | cut -d: -f2 | awk '{print $1}')
+
+if [ "$FS_TYPE" = "data" ]; then
+    # Format it if not
+    mkfs -t ext4 /dev/$DB_DEVICE
+fi
+
+# Mount the disk, which might not be freshly formatted.
+mount /dev/$DB_DEVICE /mnt/avax-db
+
+# Make the mount happen on every boot
+DISK_UUID=$(sudo blkid | grep "^/dev/$DB_DEVICE:" | awk -F 'UUID="' '{print $2}' | awk -F '"' '{print $1}')
+echo "UUID=$DISK_UUID   /mnt/avax-db    ext4    defaults    0    2" >> /etc/fstab
+
+# Let ava user own the mount point. The ava user is set up during the packer image generation.
+sudo chown ava /mnt/avax-db
+
+# Ensure we only run this once
+sudo touch /etc/startup_was_launched
