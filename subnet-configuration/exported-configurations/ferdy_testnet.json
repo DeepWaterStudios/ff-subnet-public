@@ -3,7 +3,7 @@
    "Name": "FerdyNet",
    "VM": "Custom",
    "VMVersion": "",
-   "RPCVersion": 31,
+   "RPCVersion": 32,
    "Subnet": "FerdyNet",
    "TokenName": "TEST",
    "ChainID": "",
