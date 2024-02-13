@@ -12,7 +12,7 @@
       "Fuji": {
         "SubnetID": "2tjQ43HKjArCS5W5ckMRouHyvU8ez1yp81H4M6fZ9wMDMrn5rH",
         "BlockchainID": "e3k9c6RKgouPWtyQkr1ULC2PSFVu6BZdFefXZXJfwJ1zjWsmE",
-        "RPCVersion": 28
+        "RPCVersion": 32
       }
     },
    "ElasticSubnet": null,
