@@ -8,7 +8,13 @@
    "TokenName": "TEST",
    "ChainID": "",
    "Version": "1.4.0",
-   "Networks": null,
+   "Networks": {
+      "Fuji": {
+        "SubnetID": "2tjQ43HKjArCS5W5ckMRouHyvU8ez1yp81H4M6fZ9wMDMrn5rH",
+        "BlockchainID": "e3k9c6RKgouPWtyQkr1ULC2PSFVu6BZdFefXZXJfwJ1zjWsmE",
+        "RPCVersion": 28
+      }
+    },
    "ElasticSubnet": null,
    "ImportedFromAPM": false,
    "ImportedVMID": "",
