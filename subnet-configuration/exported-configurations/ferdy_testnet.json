@@ -19,7 +19,7 @@
    "ImportedFromAPM": false,
    "ImportedVMID": "",
    "CustomVMRepoURL": "https://github.com/tactical-retreat/subnet-evm",
-   "CustomVMBranch": "version-v0.6.0-fuji",
+   "CustomVMBranch": "master",
    "CustomVMBuildScript": "scripts/build.sh",
    "SubnetEVMMainnetChainID": 0
  },
